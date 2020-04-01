@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 
-import Styles from "./Intro.styles";
+import Styles, { Title } from "./Intro.styles";
 import { IntroProps as Props } from "./Intro.types";
 
 import appJson from "../../../app.json";
@@ -9,7 +9,7 @@ import appJson from "../../../app.json";
 const Intro: React.FC<Props> = props => {
   return (
     <Styles>
-      <Text>React native boilerplate</Text>
+      <Title>React native boilerplate</Title>
       <Text>v{appJson.expo.version}</Text>
     </Styles>
   );

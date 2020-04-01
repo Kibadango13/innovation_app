@@ -12,11 +12,7 @@ import {
 const ThemeProviderContainer: React.FC<Props> = props => {
   const { selectedTheme } = props;
 
-  return (
-    <>
-      <ThemeProvider theme={selectedTheme}>{props.children}</ThemeProvider>
-    </>
-  );
+  return <ThemeProvider theme={selectedTheme}>{props.children}</ThemeProvider>;
 };
 
 ThemeProviderContainer.defaultProps = {};

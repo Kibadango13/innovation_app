@@ -9,4 +9,8 @@ const Intro = styled.View<Props>`
   justify-content: center;
 `;
 
+export const Title = styled.Text`
+  color: ${props => props.theme.palette.primary};
+`;
+
 export default Intro;
