@@ -8,7 +8,7 @@ import { User } from "types/user.types";
 import {
   handleSessionExpiration,
   refreshLocalStorageAuth
-} from "zutils/session";
+} from "../../utils/session";
 
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
