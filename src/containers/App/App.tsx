@@ -1,16 +1,19 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { registerRootComponent } from "expo";
 
-import appJson from "./app.json";
+import { AppProps as Props } from "./App.types";
 
-export default function App() {
+import appJson from "../../../app.json";
+
+const App: React.FC<Props> = props => {
   return (
     <View style={styles.container}>
       <Text>React native boilerplate</Text>
       <Text>v{appJson.expo.version}</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -20,3 +23,5 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+export default registerRootComponent(App);
