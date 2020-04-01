@@ -1,9 +1,9 @@
 import { Dispatch } from "redux";
 
-import { AppActions } from "redux/store.types";
+import { AppActions } from "../../redux/store.types";
 import themes from "../../styles/theme";
 import CONSTANTS from "../../config/constants";
-import { THEMES } from "types/theme.types";
+import { THEMES } from "../../types/theme.types";
 
 export const SET_SELECTED_THEME = "SET_SELECTED_THEME";
 

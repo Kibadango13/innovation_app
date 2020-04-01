@@ -1,14 +1,15 @@
 import { Dispatch } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
-import { AppActions, AppState } from "redux/store.types";
+import { AppActions, AppState } from "../../redux/store.types";
 import { buildUser } from "../../utils/testUtils/builders/user.builder";
 import { genBiasBoolean } from "../../utils/testUtils/builders/common.builder";
-import { User } from "types/user.types";
+import { User } from "../../types/user.types";
 import {
   handleSessionExpiration,
   refreshLocalStorageAuth
 } from "../../utils/session";
+import env from "../../../env";
 
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
@@ -98,10 +99,9 @@ export const setLoggedIn = (authToken: string, save = false) => async (
 
 // Logs the user out
 export const logOut = () => (dispatch: Dispatch<AppActions>) => {
-  const authTokenKey = process.env.REACT_APP_AUTH_TOKEN_KEY as string;
+  const authTokenKey = env.AUTH_TOKEN_KEY as string;
   localStorage.removeItem(authTokenKey);
-  const authTokenExpiracyKey = process.env
-    .REACT_APP_AUTH_EXPIRACY_TOKEN_KEY as string;
+  const authTokenExpiracyKey = env.AUTH_EXPIRACY_TOKEN_KEY as string;
   localStorage.removeItem(authTokenExpiracyKey);
   dispatch({ type: LOG_OUT, payload: null });
 };

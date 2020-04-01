@@ -11,7 +11,6 @@ import {
 
 const ThemeProviderContainer: React.FC<Props> = props => {
   const { selectedTheme } = props;
-  console.log(selectedTheme);
 
   return (
     <>
