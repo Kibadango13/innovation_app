@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { registerRootComponent } from "expo";
 
 import { AppProps as Props } from "./App.types";
-import { ErrorBoundary } from "../../util/bugsnag";
+import { ErrorBoundary } from "../../utils/bugsnag";
 import CONSTANTS from "../../config/constants";
 // import i18n from "../../i18n/i18n";
 import store from "../../redux/store";

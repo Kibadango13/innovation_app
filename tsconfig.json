@@ -1,5 +1,19 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "assets": ["src/assets/*"],
+      "components": ["src/components/*"],
+      "config": ["src/config/*"],
+      "containers": ["src/containers/*"],
+      "i18n": ["src/i18n/*"],
+      "redux": ["src/redux/*"],
+      "screens": ["src/screens/*"],
+      "services": ["src/services/*"],
+      "styles": ["src/styles/*"],
+      "types": ["src/types/*"],
+      "utils": ["src/utils/*"]
+    },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
     "lib": ["dom", "esnext"],

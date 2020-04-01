@@ -18,6 +18,11 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
+    },
+    "extra": {
+      "bugsnag": {
+        "apiKey": "CHANGE_ME_WITH_API_KEY"
+      }
     }
   }
 }
