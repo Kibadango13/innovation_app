@@ -2,20 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
-import { AppState } from "redux/store.types";
+import { AppState } from "../../redux/store.types";
 import {
   ThemeProviderContainerProps as Props,
   ThemeProviderContainerMSTP,
   ThemeProviderContainerMDTP
 } from "./ThemeProviderContainer.types";
-import GlobalStyles from "../../styles/base";
 
 const ThemeProviderContainer: React.FC<Props> = props => {
   const { selectedTheme } = props;
 
   return (
     <>
-      <GlobalStyles theme={selectedTheme} />
       <ThemeProvider theme={selectedTheme}>{props.children}</ThemeProvider>
     </>
   );

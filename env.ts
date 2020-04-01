@@ -7,19 +7,25 @@ const ENV = {
     ENV: "development",
     API_URL: "http://localhost:5000",
     BUGSNAG_API_KEY: "",
-    PLATFORM
+    PLATFORM,
+    AUTH_TOKEN_KEY: "",
+    AUTH_EXPIRACY_TOKEN_KEY: ""
   },
   staging: {
     ENV: "staging",
     API_URL: "",
     BUGSNAG_API_KEY: "",
-    PLATFORM
+    PLATFORM,
+    AUTH_TOKEN_KEY: "",
+    AUTH_EXPIRACY_TOKEN_KEY: ""
   },
   production: {
     ENV: "production",
     API_URL: "",
     BUGSNAG_API_KEY: "",
-    PLATFORM
+    PLATFORM,
+    AUTH_TOKEN_KEY: "",
+    AUTH_EXPIRACY_TOKEN_KEY: ""
   }
 };
 
