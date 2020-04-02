@@ -10,6 +10,7 @@ const Intro = styled.View<Props>`
   background-color: white;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 export const Title = styled.Text`
@@ -30,6 +31,7 @@ export const Logo = styled(LogoSVG)`
 
 export const CTA = css`
   border-radius: 20px;
+  margin-top: 24px;
 `;
 
 export default Intro;
