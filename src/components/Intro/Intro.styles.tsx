@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 
 import { IntroStyledProps as Props } from "./Intro.types";
+import css from "../../styles/util/cssToReactNative";
 
 import LogoSVG from "../../assets/images/logo.svg";
 
@@ -19,12 +20,16 @@ export const Title = styled.Text`
 
 export const Version = styled.Text`
   color: ${props => props.theme.palette.grey[1]};
-  padding-top: 4px;
+  padding: 8px 0;
 `;
 
 export const Logo = styled(LogoSVG)`
   width: 150px;
   height: 150px;
+`;
+
+export const CTA = css`
+  border-radius: 20px;
 `;
 
 export default Intro;

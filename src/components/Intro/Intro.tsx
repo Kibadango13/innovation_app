@@ -1,10 +1,11 @@
 import React from "react";
-import { Linking } from "react-native";
+import { Linking, View } from "react-native";
 
-import Styles, { Title, Version, Logo } from "./Intro.styles";
+import Styles, { Title, Version, Logo, CTA } from "./Intro.styles";
 import { IntroProps as Props } from "./Intro.types";
 
 import appJson from "../../../app.json";
+import Button from "../../components/global/Button/Button";
 
 const Intro: React.FC<Props> = props => {
   const openLink = () => {
@@ -18,9 +19,12 @@ const Intro: React.FC<Props> = props => {
   };
   return (
     <Styles>
-      <Logo onPress={openLink} />
+      <Logo />
       <Title>React native boilerplate</Title>
       <Version>v{appJson.expo.version}</Version>
+      <Button mode={"SECONDARY"} onPress={openLink} viewStyle={CTA}>
+        Guidelines
+      </Button>
     </Styles>
   );
 };
