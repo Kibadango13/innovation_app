@@ -5,7 +5,10 @@ const palette = {
   primary: "#FB5058",
   "primary-light": lighten(0.3, "#FB5058"),
   secondary: "#F9F9F9",
-  grey: "#707070",
+  grey: [
+    "#707070", // 0
+    "#AAA" // 1
+  ],
   black: "#000000",
   white: "#FFFFFF"
 };
