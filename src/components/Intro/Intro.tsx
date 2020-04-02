@@ -1,11 +1,11 @@
 import React from "react";
-import { Linking, View } from "react-native";
+import { Linking } from "react-native";
 
 import Styles, { Title, Version, Logo, CTA } from "./Intro.styles";
 import { IntroProps as Props } from "./Intro.types";
+import Button from "components/global/Button/Button";
 
 import appJson from "../../../app.json";
-import Button from "../../components/global/Button/Button";
 
 const Intro: React.FC<Props> = props => {
   const openLink = () => {
@@ -17,6 +17,7 @@ const Intro: React.FC<Props> = props => {
       console.log("Failed to open url");
     }
   };
+
   return (
     <Styles>
       <Logo />

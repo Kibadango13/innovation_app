@@ -4,12 +4,12 @@ import { Provider } from "react-redux";
 import { registerRootComponent } from "expo";
 
 import { AppProps as Props } from "./App.types";
-// import { ErrorBoundary } from "../../util/bugsnag";
-import CONSTANTS from "../../config/constants";
-// import i18n from "../../i18n/i18n";
-import store from "../../redux/store";
+// import { ErrorBoundary } from "util/bugsnag";
+import CONSTANTS from "config/constants";
+// import i18n from "i18n/i18n";
+import store from "redux/store";
 import ThemeProviderContainer from "../ThemeProviderContainer/ThemeProviderContainer";
-import Intro from "../../components/Intro/Intro";
+import Intro from "components/Intro/Intro";
 // import env from "../../../env";
 
 const App: React.FC<Props> = props => {

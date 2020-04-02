@@ -1,9 +1,9 @@
 import styled from "styled-components/native";
 
 import { IntroStyledProps as Props } from "./Intro.types";
-import css from "../../styles/util/cssToReactNative";
+import css from "styles/util/cssToReactNative";
 
-import LogoSVG from "../../assets/images/logo.svg";
+import LogoSVG from "assets/images/logo.svg";
 
 const Intro = styled.View<Props>`
   flex: 1;

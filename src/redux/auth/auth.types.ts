@@ -1,6 +1,6 @@
 // Reducer types and interfaces
 import { LOG_IN, LOG_OUT } from "./auth.actions";
-import { User } from "types/user.types";
+import { User } from "interfaces/user.types";
 
 // Types for the reducer Auth
 

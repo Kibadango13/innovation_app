@@ -1,6 +1,6 @@
 import moment from "moment";
 
-import CONSTANTS from "../config/constants";
+import CONSTANTS from "config/constants";
 import env from "../../env";
 
 // Returns the authToken if it is found on localStorage and it is not expired

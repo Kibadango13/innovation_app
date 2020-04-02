@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import CONSTANTS from "../config/constants";
+import CONSTANTS from "config/constants";
 import bugsnagClient from "./bugsnag";
 
 const axiosDefault = axios.create({

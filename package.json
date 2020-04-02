@@ -10,6 +10,7 @@
   "dependencies": {
     "@bugsnag/expo": "^6.5.1",
     "@react-native-community/netinfo": "5.5.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "css-to-react-native": "^3.0.0",
     "expo": "~37.0.3",
     "faker": "^4.1.0",

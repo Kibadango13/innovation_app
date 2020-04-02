@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
-import { AppState } from "../../redux/store.types";
+import { AppState } from "redux/store.types";
 import {
   ThemeProviderContainerProps as Props,
   ThemeProviderContainerMSTP,

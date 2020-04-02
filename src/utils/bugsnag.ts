@@ -2,8 +2,8 @@ import React from "react";
 import bugsnag from "@bugsnag/expo";
 import bugsnagReact from "@bugsnag/plugin-react";
 
+import CONSTANTS from "config/constants";
 import appJSON from "../../app.json";
-import CONSTANTS from "../config/constants";
 import env from "../../env";
 
 let bugsnagClient: any = null;

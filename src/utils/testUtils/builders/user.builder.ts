@@ -1,7 +1,7 @@
 // User entity builder functions
 import faker from "faker";
 
-import { User, UserRol } from "../../../types/user.types";
+import { User, UserRol } from "interfaces/user.types";
 import {
   genId,
   genMobilPhone,
@@ -9,7 +9,7 @@ import {
   genEmail,
   genBiasBoolean
 } from "./common.builder";
-import CONSTANTS from "../../../config/constants";
+import CONSTANTS from "config/constants";
 
 const genUserName = () => {
   return `${faker.name.firstName()} ${faker.name.firstName()}`;
@@ -32,6 +32,7 @@ const genUserPhone = () => {
 };
 
 export const buildUser = (overrides: Partial<User> = {}): User => {
+  console.log(User);
   return {
     id: genId(),
     name: genUserName(),

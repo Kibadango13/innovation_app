@@ -1,14 +1,14 @@
 import { Dispatch } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
-import { AppActions, AppState } from "../../redux/store.types";
-import { buildUser } from "../../utils/testUtils/builders/user.builder";
-import { genBiasBoolean } from "../../utils/testUtils/builders/common.builder";
-import { User } from "../../types/user.types";
+import { AppActions, AppState } from "redux/store.types";
+import { buildUser } from "utils/testUtils/builders/user.builder";
+import { genBiasBoolean } from "utils/testUtils/builders/common.builder";
+import { User } from "interfaces/user.types";
 import {
   handleSessionExpiration,
   refreshLocalStorageAuth
-} from "../../utils/session";
+} from "utils/session";
 import env from "../../../env";
 
 export const LOG_IN = "LOG_IN";
