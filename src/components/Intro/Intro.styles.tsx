@@ -13,4 +13,8 @@ export const Title = styled.Text`
   color: ${props => props.theme.palette.primary};
 `;
 
+export const Version = styled.Text`
+  color: black;
+`;
+
 export default Intro;
