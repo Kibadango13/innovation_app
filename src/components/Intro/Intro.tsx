@@ -1,5 +1,6 @@
 import React from "react";
 import { Linking } from "react-native";
+import { t } from "i18n-js";
 
 import Styles, { Title, Version, Logo, CTA } from "./Intro.styles";
 import { IntroProps as Props } from "./Intro.types";
@@ -21,10 +22,13 @@ const Intro: React.FC<Props> = props => {
   return (
     <Styles>
       <Logo />
-      <Title>React native boilerplate</Title>
-      <Version>v{appJson.expo.version}</Version>
+      <Title>{t("title")}</Title>
+      <Version>
+        {t("version")}
+        {appJson.expo.version}
+      </Version>
       <Button mode={"SECONDARY"} onPress={openLink} viewStyle={CTA}>
-        Guidelines
+        {t("guidelines")}
       </Button>
     </Styles>
   );
