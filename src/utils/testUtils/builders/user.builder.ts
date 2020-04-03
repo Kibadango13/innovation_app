@@ -32,7 +32,6 @@ const genUserPhone = () => {
 };
 
 export const buildUser = (overrides: Partial<User> = {}): User => {
-  console.log(User);
   return {
     id: genId(),
     name: genUserName(),

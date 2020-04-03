@@ -2,19 +2,20 @@ import axios from "axios";
 
 import CONSTANTS from "config/constants";
 import bugsnagClient from "./bugsnag";
+import env from "../../env";
 
 const axiosDefault = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: env.API_URL,
   timeout: CONSTANTS.DEFAULT_REQUEST_TIMEOUT,
   headers: {
-    Platform: process.env.REACT_APP_PLATFORM
+    Platform: env.PLATFORM
   }
 });
 
 // Report to logger middleware
 const report = (error: any) => {
-  const env = process.env.REACT_APP_ENV as string;
-  const includedEnv = CONSTANTS.INCLUDED_LOGGER_ENVS.includes(env);
+  const environment = env.ENV;
+  const includedEnv = CONSTANTS.INCLUDED_LOGGER_ENVS.includes(environment);
   let excludedCode = true;
   let timeout = false;
 
