@@ -21,7 +21,7 @@
     },
     "extra": {
       "bugsnag": {
-        "apiKey": "CHANGE_ME_WITH_API_KEY"
+        "apiKey": "fake"
       }
     },
     "packagerOpts": {

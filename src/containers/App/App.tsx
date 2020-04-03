@@ -4,7 +4,7 @@ import { registerRootComponent } from "expo";
 import "i18n/i18n";
 
 import { AppProps as Props } from "./App.types";
-// import { ErrorBoundary } from "util/bugsnag";
+// import { ErrorBoundary } from "utils/bugsnag";
 // import CONSTANTS from "config/constants";
 import store from "redux/store";
 import ThemeProviderContainer from "../ThemeProviderContainer/ThemeProviderContainer";

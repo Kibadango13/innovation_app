@@ -1,6 +1,4 @@
-import React from "react";
 import bugsnag from "@bugsnag/expo";
-import bugsnagReact from "@bugsnag/plugin-react";
 
 import CONSTANTS from "config/constants";
 import appJSON from "../../app.json";
@@ -24,7 +22,6 @@ if (includedEnv) {
     }
   });
 
-  bugsnagClient.use(bugsnagReact, React);
   ErrorBoundary = bugsnagClient.getPlugin("react");
 }
 
