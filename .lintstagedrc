@@ -4,6 +4,6 @@
   ],
   "**/*.+(js|jsx|ts|tsx|json|css|scss|html|md)": [
     "prettier --write",
-#   "npm run test:ci -- --findRelatedTests"
+    "npm run test:ci -- --findRelatedTests"
   ]
 }

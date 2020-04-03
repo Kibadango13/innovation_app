@@ -5,5 +5,18 @@ module.exports = {
   ],
   moduleNameMapper: {
     "\\.svg": "<rootDir>/src/utils/testUtils/__mocks__/svgMock.js"
+  },
+  collectCoverageFrom: [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/**/*.d.ts",
+    "!src/**/*.types.ts"
+  ],
+  coverageThreshold: {
+    global: {
+      statements: 36,
+      branches: 12,
+      lines: 36,
+      functions: 20
+    }
   }
 };
