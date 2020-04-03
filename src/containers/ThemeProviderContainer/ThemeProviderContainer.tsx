@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components/native";
 
 import { AppState } from "redux/store.types";
 import {

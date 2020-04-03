@@ -30,4 +30,5 @@ const App: React.FC<Props> = props => {
   return app;
 };
 
+export { App };
 export default registerRootComponent(App);

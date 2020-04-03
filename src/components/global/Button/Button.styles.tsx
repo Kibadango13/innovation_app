@@ -5,7 +5,6 @@ import { ButtonStyledProps as Props } from "./Button.types";
 const Styles = styled.View<Props>`
   border-radius: 4px;
   background-color: red;
-
   background-color: ${props =>
     props.buttonMode === "PRIMARY"
       ? props.theme.palette.primary

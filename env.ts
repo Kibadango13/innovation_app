@@ -38,4 +38,4 @@ const getEnvVars = (env = ""): Environment => {
   return ENV.development;
 };
 
-export default getEnvVars(Constants.manifest.releaseChannel);
+export default getEnvVars(Constants.manifest?.releaseChannel);

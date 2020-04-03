@@ -24,6 +24,7 @@ export const Version = styled.Text`
   padding: 8px 0;
 `;
 
+/* export const Logo = styled.View` */
 export const Logo = styled(LogoSVG)`
   width: 150px;
   height: 150px;
