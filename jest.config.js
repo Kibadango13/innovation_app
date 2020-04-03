@@ -4,6 +4,6 @@ module.exports = {
     "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)"
   ],
   moduleNameMapper: {
-    "\\.svg": "<rootDir>/__mocks__/svgMock.js"
+    "\\.svg": "<rootDir>/src/utils/testUtils/__mocks__/svgMock.js"
   }
 };
