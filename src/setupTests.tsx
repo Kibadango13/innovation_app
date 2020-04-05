@@ -31,6 +31,7 @@ const Stack = createStackNavigator();
 
 export const render = (ui: React.ReactElement, options: RenderOptions = {}) => {
   const { store = appStore, ...returnOptions } = options;
+
   // Wrapper component of the render function
   const Wrapper: React.FC<WrapperProps> = props => {
     const { children } = props;
@@ -57,14 +58,18 @@ export const appRender = (
   const {
     store = appStore,
     theme = themes.defaultTheme,
+    wrapper,
     ...returnOptions
   } = options;
   // Wrapper component of the render function
   const Wrapper: React.FC<WrapperProps> = props => {
     const { children } = props;
+    const InnerWrapper = wrapper ? wrapper : (props: any) => props.children;
     return (
       <Provider store={store}>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <InnerWrapper>{children}</InnerWrapper>
+        </ThemeProvider>
       </Provider>
     );
   };
