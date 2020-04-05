@@ -30,30 +30,22 @@ interface WrapperProps {
 const Stack = createStackNavigator();
 
 export const render = (ui: React.ReactElement, options: RenderOptions = {}) => {
-  const {
-    store = appStore,
-    theme = themes.defaultTheme,
-    ...returnOptions
-  } = options;
+  const { store = appStore, ...returnOptions } = options;
   // Wrapper component of the render function
   const Wrapper: React.FC<WrapperProps> = props => {
     const { children } = props;
     const Screen = () => <View>{children}</View>;
     return (
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen name="Home" component={Screen} />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </ThemeProvider>
-      </Provider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Screen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   };
   // Return renderer function with base options set
   return {
-    ...rtlRender(ui, { wrapper: Wrapper, ...returnOptions }),
+    ...appRender(ui, { wrapper: Wrapper, ...returnOptions }),
     store
   };
 };
