@@ -9,9 +9,12 @@ import {
   RenderOptions as rtlRenderOptions
 } from "@testing-library/react-native";
 import { ThemeProvider } from "styled-components/native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import appStore from "redux/store";
 import themes from "styles/theme";
+import { View } from "react-native";
 
 interface RenderOptions extends Omit<rtlRenderOptions, "queries"> {
   // Redux store
@@ -24,7 +27,41 @@ interface WrapperProps {
   children?: HTMLElement;
 }
 
+const Stack = createStackNavigator();
+
 export const render = (ui: React.ReactElement, options: RenderOptions = {}) => {
+  const {
+    store = appStore,
+    theme = themes.defaultTheme,
+    ...returnOptions
+  } = options;
+  // Wrapper component of the render function
+  const Wrapper: React.FC<WrapperProps> = props => {
+    const { children } = props;
+    const Screen = () => <View>{children}</View>;
+    return (
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name="Home" component={Screen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </ThemeProvider>
+      </Provider>
+    );
+  };
+  // Return renderer function with base options set
+  return {
+    ...rtlRender(ui, { wrapper: Wrapper, ...returnOptions }),
+    store
+  };
+};
+
+export const appRender = (
+  ui: React.ReactElement,
+  options: RenderOptions = {}
+) => {
   const {
     store = appStore,
     theme = themes.defaultTheme,

@@ -1,4 +1,5 @@
 import { lighten } from "polished";
+import { Dimensions } from "react-native";
 
 const palette = {
   empty: "", // Fixes a bug with styled components that appends a coma
@@ -17,11 +18,14 @@ const fonts = {
   primary: "'Montserrat', sans-serif"
 };
 
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
+
 const sizes = {
   page: {
-    minWidth: "100vw",
-    maxWidth: "100vw",
-    minHeight: "100vh"
+    minWidth: `${windowWidth}px`,
+    maxWidth: `${windowWidth}px`,
+    minHeight: `${windowHeight}px`
   }
 };
 

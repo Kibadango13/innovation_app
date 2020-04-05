@@ -8,7 +8,7 @@ import { AppProps as Props } from "./App.types";
 // import CONSTANTS from "config/constants";
 import store from "redux/store";
 import ThemeProviderContainer from "../ThemeProviderContainer/ThemeProviderContainer";
-import Intro from "components/Intro/Intro";
+import Navigator from "navigation/Navigator";
 // import env from "../../../env";
 
 const App: React.FC<Props> = props => {
@@ -18,7 +18,7 @@ const App: React.FC<Props> = props => {
   const app = (
     <Provider store={store}>
       <ThemeProviderContainer>
-        <Intro />
+        <Navigator />
       </ThemeProviderContainer>
     </Provider>
   );

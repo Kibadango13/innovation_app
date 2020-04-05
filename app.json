@@ -5,7 +5,7 @@
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "entryPoint": "src/containers/App/App.tsx",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "src/assets/images/icon.png",
     "splash": {
       "image": "src/assets/images/splash/splash.png",
