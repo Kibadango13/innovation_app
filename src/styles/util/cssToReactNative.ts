@@ -13,10 +13,7 @@ const css = (
         .split(/(?:\r\n|\n|\r)/)
         .filter(line => !!line)
         .map(line => {
-          return (line as string)
-            .replace(";", "")
-            .trim()
-            .split(":");
+          return (line as string).replace(";", "").trim().split(":");
         });
     });
   if (!rows.length) {

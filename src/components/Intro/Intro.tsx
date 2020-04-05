@@ -27,7 +27,7 @@ const Intro: React.FC<Props> = props => {
         {t("version")}
         {appJson.expo.version}
       </Version>
-      <Button mode={"SECONDARY"} onPress={openLink} viewStyle={CTA}>
+      <Button mode="SECONDARY" onPress={openLink} viewStyle={CTA}>
         {t("guidelines")}
       </Button>
     </Styles>

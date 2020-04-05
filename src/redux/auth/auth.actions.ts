@@ -25,7 +25,7 @@ export const logIn = (
       if (genBiasBoolean(1)) {
         resolve("FAKE_TOKEN");
       } else {
-        reject(null);
+        reject(new Error("Server: Password and email did not match"));
       }
     });
 
@@ -54,8 +54,7 @@ export const isLoggedIn = () => async (
         if (genBiasBoolean(1)) {
           resolve("FAKE_TOKEN");
         } else {
-          console.error("Sesión expiró");
-          reject(null);
+          reject(new Error("Server: Auth token expired"));
         }
       });
     }
@@ -83,7 +82,7 @@ export const setLoggedIn = (authToken: string, save = false) => async (
         resolve(buildUser());
       } else {
         console.error("Falló la búsqueda del usuario");
-        reject(null);
+        reject(new Error("User not found"));
       }
     });
 

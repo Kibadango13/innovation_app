@@ -6,8 +6,16 @@
       "jsx": true
     }
   },
-  "extends": ["eslint:recommended", "eslint-config-prettier", "react-app"],
-  "rules": {},
+  "extends": [
+    "eslint:recommended",
+    "eslint-config-prettier",
+    "universe/native",
+    "universe/shared/typescript-analysis",
+    "react-app"
+  ],
+  "rules": {
+    "import/order": "off"
+  },
   "env": {
     "browser": true,
     "node": true
