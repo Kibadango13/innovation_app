@@ -7,7 +7,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest  --watchAll",
+    "test": "jest",
     "test:all": "npm run test -- --watchAll=false --coverage",
     "test:ci": "CI=true jest",
     "check-types": "tsc",
