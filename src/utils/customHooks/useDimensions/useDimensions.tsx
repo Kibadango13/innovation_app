@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react";
 import { Dimensions } from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
 
 import { UseDimensions } from "./useDimensions.types";
+import { defaultOffsets } from "./useDimensions.helpers";
 
-const useDimensions: UseDimensions = container => {
-  const headerHeight = useHeaderHeight() || 0;
+const useDimensions: UseDimensions = (container, offsets = defaultOffsets) => {
+  const offsetWidth = offsets.width ?? 0;
+  const offsetHeight = offsets.height ?? 0;
 
-  const [width, setWidth] = useState(Dimensions.get(container).width);
+  const [width, setWidth] = useState(
+    Dimensions.get(container).width - offsetWidth
+  );
   const [height, setHeight] = useState(
-    Dimensions.get(container).height - headerHeight
+    Dimensions.get(container).height - offsetHeight
   );
 
   useEffect(() => {
     const resize = () => {
-      setWidth(Dimensions.get(container).width);
-      setHeight(Dimensions.get(container).height - headerHeight);
+      setWidth(Dimensions.get(container).width - offsetWidth);
+      setHeight(Dimensions.get(container).height - offsetHeight);
     };
 
     Dimensions.addEventListener("change", resize);
@@ -23,7 +26,7 @@ const useDimensions: UseDimensions = container => {
     return () => {
       Dimensions.removeEventListener("change", resize);
     };
-  }, [container, headerHeight]);
+  }, [container, offsetWidth, offsetHeight]);
 
   return { width, height };
 };
