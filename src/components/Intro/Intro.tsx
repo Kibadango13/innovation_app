@@ -19,10 +19,6 @@ const Intro: React.FC<Props> = props => {
     }
   };
 
-  // if (Math.random() > 0.5) {
-  //   throw new Error("I crashed");
-  // }
-
   return (
     <Styles>
       <Logo />
