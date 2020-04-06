@@ -17,5 +17,3 @@ describe("ServerError screen", () => {
     );
   });
 });
-
-//TODO: add to blue print once it works

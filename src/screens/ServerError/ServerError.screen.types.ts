@@ -8,6 +8,8 @@ import { NavigatorScreens } from "navigation/Navigator.types";
 export interface ServerErrorProps {
   navigation: ServerErrorNavigation;
   route: ServerErrorRoute;
+  error?: Error;
+  resetError?: () => void;
 }
 
 // Screen params

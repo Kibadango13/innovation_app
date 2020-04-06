@@ -1,16 +1,28 @@
-import { Component } from "react";
+import React from "react";
+import ErrorBoundaryLib from "react-native-error-boundary";
 
-class ErrorBoundary extends Component<any, any> {
-  componentDidCatch(error: any, errorInfo: any) {
-    console.log(error);
-    // TODO: logErrorToMyService(error, errorInfo);
-    // TODO: show 500 with navigation
-    // this.props.history.push("/500");
-  }
+import ServerError from "@screens/ServerError/ServerError.screen";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import {
+  ServerErrorNavigation,
+  ServerErrorRoute
+} from "@screens/ServerError/ServerError.screen.types";
+import { ErrorBoundryProps as Props } from "./ErrorBoundry.types";
 
-  render() {
-    return this.props.children;
-  }
-}
+const ErrorBoundry: React.FC<Props> = props => {
+  const navigation = useNavigation<ServerErrorNavigation>();
+  const route = useRoute<ServerErrorRoute>();
+  type FallbackProps = { error: Error; resetError: () => void };
+  const Fallback = (props: FallbackProps) => (
+    <ServerError {...props} navigation={navigation} route={route} />
+  );
+  return (
+    <ErrorBoundaryLib FallbackComponent={Fallback}>
+      {props.children}
+    </ErrorBoundaryLib>
+  );
+};
 
-export default ErrorBoundary;
+ErrorBoundry.defaultProps = {};
+
+export default ErrorBoundry;
