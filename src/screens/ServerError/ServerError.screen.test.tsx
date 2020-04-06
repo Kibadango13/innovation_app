@@ -1,19 +1,21 @@
 import React from "react";
 
 import { render } from "setupTests";
-import Home from "./Home.screen";
+import ServerError from "./ServerError.screen";
 import {
   buildStackNavigation,
   buildRoute
 } from "utils/testUtils/builders/navigation.builder";
 
-describe("Home screen", () => {
+describe("ServerError screen", () => {
   it("renders without crashing", () => {
     render(
-      <Home
+      <ServerError
         navigation={buildStackNavigation()}
-        route={buildRoute({ name: "Home" })}
+        route={buildRoute({ name: "ServerError" })}
       />
     );
   });
 });
+
+//TODO: add to blue print once it works

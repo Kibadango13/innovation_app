@@ -22,6 +22,7 @@ export const Text = styled.Text<Props>`
     props.buttonMode === "PRIMARY"
       ? props.theme.palette.white
       : props.theme.palette.primary};
+  text-align: center;
 `;
 
 export default Styles;
