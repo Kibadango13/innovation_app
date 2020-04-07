@@ -4,8 +4,10 @@ import transform from "css-to-react-native";
 
 // Transform css styles from styled components to React native styles object
 const css = (
-  styles: FlattenSimpleInterpolation
+  styles: FlattenSimpleInterpolation,
+  ...args: any[]
 ): StyleProp<ViewStyle | TextStyle | ImageStyle> => {
+  let argsCount = 0;
   const rows = styles
     .filter(block => !!block)
     .map(block => {
@@ -13,7 +15,12 @@ const css = (
         .split(/(?:\r\n|\n|\r)/)
         .filter(line => !!line)
         .map(line => {
-          return (line as string).replace(";", "").trim().split(":");
+          const pair = (line as string).replace(";", "").trim().split(":");
+          if (!!pair[0] && !pair[1]) {
+            pair[1] = args[argsCount];
+            argsCount++;
+          }
+          return pair;
         });
     });
   if (!rows.length) {
