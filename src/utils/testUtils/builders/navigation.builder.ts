@@ -1,6 +1,5 @@
 // React navigation builders
 import {
-  RouteProp,
   NavigationAction,
   StackNavigationState,
   PartialState
@@ -11,11 +10,11 @@ import {
 } from "@react-navigation/stack";
 import { ServerErrorParams } from "screens/ServerError/ServerError.screen.types";
 
-export const buildRoute = (overrides: Partial<RouteProp<any, any>> = {}) => {
+export const buildRoute = <T>(overrides: Partial<T> = {}) => {
   return {
     key: "",
     name: "",
-    params: [],
+    params: {},
     ...overrides
   };
 };

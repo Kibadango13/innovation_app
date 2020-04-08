@@ -6,13 +6,14 @@ import {
   buildStackNavigation,
   buildRoute
 } from "utils/testUtils/builders/navigation.builder";
+import { ServerErrorRoute } from "./ServerError.screen.types";
 
 describe("ServerError screen", () => {
   it("renders without crashing", () => {
     render(
       <ServerError
         navigation={buildStackNavigation()}
-        route={buildRoute({ name: "ServerError" })}
+        route={buildRoute<ServerErrorRoute>({ name: "ServerError" })}
       />
     );
   });
