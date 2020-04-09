@@ -7,7 +7,7 @@ const ScreenTemplateStyled = styled.View<Props>`
   flex: 1;
   min-width: ${props => `${props.width}px`};
   max-width: ${props => `${props.width}px`};
-  min-height: ${props => `${props.height}px`};
+  height: ${props => `${props.height}px`};
 `;
 
 export const Scroll = css`
