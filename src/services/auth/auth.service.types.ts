@@ -1,5 +1,4 @@
 // auth services types and interfaces
-
 import { User } from "@interfaces/user.types";
 
 type LogInRes = {

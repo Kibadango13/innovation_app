@@ -50,8 +50,10 @@ export const isLoggedIn = () => async (
       if (authToken) {
         dispatch(setLoggedIn(authToken, user));
       } else {
-        throw new Error("Failed to signin");
+        throw new Error("Server: Failed to sign in");
       }
+    } else {
+      throw new Error("Failed to sign in");
     }
   } catch (e) {
     dispatch(logOut());
@@ -68,8 +70,8 @@ export const setLoggedIn = (
     // Set the auth token in AsyncStorage
     await refreshAsyncStorageAuth(authToken, save);
     // Fetch user from the server
-    const payload = { authToken, user };
     if (user) {
+      const payload = { authToken, user };
       dispatch({ type: LOG_IN, payload });
     } else {
       throw new Error("Failed to fetch user data");
