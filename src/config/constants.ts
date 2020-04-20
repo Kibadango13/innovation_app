@@ -19,11 +19,16 @@ const CONSTANTS = {
   // Default country
   COUNTRY: {
     NAME: "Ecuador",
-    CODE: "593"
+    CODE: "593",
+    LANGUAGE: "es"
   },
   // App themes
   THEMES: {
     DARK: "DARK"
+  },
+  // React Query global config
+  REACT_QUERY_CONFIG: {
+    retry: 3
   }
 };
 

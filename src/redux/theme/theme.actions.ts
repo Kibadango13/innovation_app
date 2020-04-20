@@ -1,6 +1,4 @@
-import { Dispatch } from "redux";
-
-import { AppActions } from "redux/store.types";
+import { ThunkDispatch } from "redux/store.types";
 import themes from "styles/theme";
 import CONSTANTS from "config/constants";
 import { THEMES } from "interfaces/theme.types";
@@ -8,7 +6,7 @@ import { THEMES } from "interfaces/theme.types";
 export const SET_SELECTED_THEME = "SET_SELECTED_THEME";
 
 export const setSelectedTheme = (theme: THEMES) => (
-  dispatch: Dispatch<AppActions>
+  dispatch: ThunkDispatch
 ) => {
   const themeNames = CONSTANTS.THEMES;
   let selectedTheme: any = {};

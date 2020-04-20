@@ -1,10 +1,12 @@
 import React from "react";
-import { appRender } from "setupTests";
+import { appRender, wait } from "setupTests";
 
 import { App } from "./App";
 
 describe("App", () => {
-  it("renders without crashing", () => {
-    appRender(<App />);
+  it("renders without crashing", async () => {
+    await wait(() => {
+      appRender(<App />);
+    });
   });
 });

@@ -1,7 +1,4 @@
-import { Dispatch } from "redux";
-import { ThunkDispatch } from "redux-thunk";
-
-import { AppActions, AppState } from "redux/store.types";
+import { ThunkDispatch, AppState } from "redux/store.types";
 import { User } from "interfaces/user.types";
 import {
   handleSessionExpiration,
@@ -24,7 +21,7 @@ export const logIn = (
   email: string,
   password: string,
   rememberme: boolean
-) => async (dispatch: ThunkDispatch<any, any, AppActions>) => {
+) => async (dispatch: ThunkDispatch) => {
   try {
     const { token: authToken, user } = await logInUser(email, password);
     if (authToken) {
@@ -39,7 +36,7 @@ export const logIn = (
 
 // Checks whether the user is already loggedIn in the server and sets it as logged in locally
 export const isLoggedIn = () => async (
-  dispatch: ThunkDispatch<any, any, AppActions>,
+  dispatch: ThunkDispatch,
   getState: () => AppState
 ) => {
   try {
@@ -66,7 +63,7 @@ export const setLoggedIn = (
   authToken: string,
   user: User,
   save = false
-) => async (dispatch: ThunkDispatch<any, any, AppActions>) => {
+) => async (dispatch: ThunkDispatch) => {
   try {
     // Set the auth token in AsyncStorage
     await refreshAsyncStorageAuth(authToken, save);
@@ -84,7 +81,7 @@ export const setLoggedIn = (
 
 // Update user data
 export const updateUser = (user: User) => async (
-  dispatch: Dispatch<AppActions>,
+  dispatch: ThunkDispatch,
   getState: () => AppState
 ) => {
   try {
@@ -97,7 +94,7 @@ export const updateUser = (user: User) => async (
 
 // Logs the user out
 export const logOut = () => async (
-  dispatch: Dispatch<AppActions>,
+  dispatch: ThunkDispatch,
   getState: () => AppState
 ) => {
   try {

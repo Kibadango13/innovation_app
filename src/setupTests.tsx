@@ -11,10 +11,13 @@ import {
 import { ThemeProvider } from "styled-components/native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { ReactQueryConfigProvider } from "react-query";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { View } from "react-native";
 
 import appStore from "redux/store";
 import themes from "styles/theme";
-import { View } from "react-native";
+import CONSTANTS from "@config/constants";
 
 interface RenderOptions extends Omit<rtlRenderOptions, "queries"> {
   // Redux store
@@ -37,11 +40,13 @@ export const render = (ui: React.ReactElement, options: RenderOptions = {}) => {
     const { children } = props;
     const Screen = () => <View>{children}</View>;
     return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Screen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={Screen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
     );
   };
   // Return renderer function with base options set
@@ -66,11 +71,13 @@ export const appRender = (
     const { children } = props;
     const InnerWrapper = wrapper ? wrapper : (props: any) => props.children;
     return (
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <InnerWrapper>{children}</InnerWrapper>
-        </ThemeProvider>
-      </Provider>
+      <ReactQueryConfigProvider config={CONSTANTS.REACT_QUERY_CONFIG}>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <InnerWrapper>{children}</InnerWrapper>
+          </ThemeProvider>
+        </Provider>
+      </ReactQueryConfigProvider>
     );
   };
   // Return renderer function with base options set
