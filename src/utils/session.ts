@@ -1,52 +1,56 @@
+import { AsyncStorage } from "react-native";
 import moment from "moment";
 
 import CONSTANTS from "config/constants";
 import env from "../../env";
 
-// Returns the authToken if it is found on localStorage and it is not expired
-export const handleSessionExpiration = (): string | null => {
-  const authTokenKey = env.AUTH_TOKEN_KEY as string;
-  const authToken = localStorage.getItem(authTokenKey);
-  const authTokenExpiracyKey = env.AUTH_EXPIRACY_TOKEN_KEY as string;
-  const authTokenExpiracy = localStorage.getItem(authTokenExpiracyKey);
+// Returns the authToken if it is found on AsyncStorage and it is not expired
+export const handleSessionExpiration = async (): Promise<string | null> => {
+  const authTokenKey = env.AUTH_TOKEN_KEY;
+  const authToken = await AsyncStorage.getItem(authTokenKey);
+  const authTokenExpiracyKey = env.AUTH_EXPIRACY_TOKEN_KEY;
+  const authTokenExpiracy = await AsyncStorage.getItem(authTokenExpiracyKey);
 
   if (!authTokenExpiracy) {
-    cleanLocalStorageAuth();
+    await cleanAsyncStorageAuth();
     return null;
   }
 
   const expired = moment().isAfter(moment(authTokenExpiracy), "seconds");
 
   if (expired) {
-    cleanLocalStorageAuth();
+    await cleanAsyncStorageAuth();
     return null;
   }
   return authToken;
 };
 
 // Refresh expiration time on local storage
-export const refreshLocalStorageAuth = (authToken: string, save: boolean) => {
-  const authTokenKey = env.AUTH_TOKEN_KEY as string;
-  const oldToken = localStorage.getItem(authTokenKey);
+export const refreshAsyncStorageAuth = async (
+  authToken: string,
+  save: boolean
+) => {
+  const authTokenKey = env.AUTH_TOKEN_KEY;
+  const oldToken = await AsyncStorage.getItem(authTokenKey);
   if (!oldToken && !save) {
-    cleanLocalStorageAuth();
+    await cleanAsyncStorageAuth();
     return;
   }
-  // Set the auth token in localStorage
-  localStorage.setItem(authTokenKey, authToken);
-  // Set the auth token expiration date in localStorage
-  const authTokenExpiracyKey = env.AUTH_EXPIRACY_TOKEN_KEY as string;
+  // Set the auth token in AsyncStorage
+  await AsyncStorage.setItem(authTokenKey, authToken);
+  // Set the auth token expiration date in AsyncStorage
+  const authTokenExpiracyKey = env.AUTH_EXPIRACY_TOKEN_KEY;
   const defaultExpiration = CONSTANTS.AUTH_TOKEN_DEFAULT_EXPIRATION;
   const expiration = new Date(
     new Date().setSeconds(new Date().getSeconds() + defaultExpiration)
   ).toISOString();
-  localStorage.setItem(authTokenExpiracyKey, expiration);
+  await AsyncStorage.setItem(authTokenExpiracyKey, expiration);
 };
 
 // Remove auth related variables from local storage
-const cleanLocalStorageAuth = () => {
-  const authTokenKey = env.AUTH_TOKEN_KEY as string;
-  const authTokenExpiracyKey = env.AUTH_EXPIRACY_TOKEN_KEY as string;
-  localStorage.removeItem(authTokenKey);
-  localStorage.removeItem(authTokenExpiracyKey);
+export const cleanAsyncStorageAuth = async () => {
+  const authTokenKey = env.AUTH_TOKEN_KEY;
+  const authTokenExpiracyKey = env.AUTH_EXPIRACY_TOKEN_KEY;
+  await AsyncStorage.removeItem(authTokenKey);
+  await AsyncStorage.removeItem(authTokenExpiracyKey);
 };

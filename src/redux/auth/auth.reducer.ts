@@ -3,7 +3,7 @@ import {
   AuthActions as Actions,
   LogInAction
 } from "./auth.types";
-import { LOG_IN, LOG_OUT } from "./auth.actions";
+import { LOG_IN, LOG_OUT, UPDATE_USER } from "./auth.actions";
 
 // Initial state
 const initialState: State = {
@@ -18,6 +18,8 @@ const reducer = (state = initialState, action: Actions): State => {
       return logIn(state, action.payload);
     case LOG_OUT:
       return { ...state, authToken: null, user: undefined, loggedIn: false };
+    case UPDATE_USER:
+      return { ...state, user: action.payload };
     default:
       return state;
   }

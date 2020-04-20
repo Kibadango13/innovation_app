@@ -1,5 +1,5 @@
 // Reducer types and interfaces
-import { LOG_IN, LOG_OUT } from "./auth.actions";
+import { LOG_IN, LOG_OUT, UPDATE_USER } from "./auth.actions";
 import { User } from "interfaces/user.types";
 
 // Types for the reducer Auth
@@ -22,4 +22,9 @@ export interface LogOutAction {
   type: typeof LOG_OUT;
 }
 
-export type AuthActions = LogInAction | LogOutAction;
+export interface UpdateUserAction {
+  type: typeof UPDATE_USER;
+  payload: User;
+}
+
+export type AuthActions = LogInAction | LogOutAction | UpdateUserAction;

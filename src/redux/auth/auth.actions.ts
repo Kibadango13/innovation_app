@@ -2,17 +2,22 @@ import { Dispatch } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
 import { AppActions, AppState } from "redux/store.types";
-import { buildUser } from "utils/testUtils/builders/user.builder";
-import { genBiasBoolean } from "utils/testUtils/builders/common.builder";
 import { User } from "interfaces/user.types";
 import {
   handleSessionExpiration,
-  refreshLocalStorageAuth
+  refreshAsyncStorageAuth
 } from "utils/session";
-import env from "../../../env";
+import { cleanAsyncStorageAuth } from "@utils/session";
+import {
+  fetchAuthToken,
+  logInUser,
+  updateUserService,
+  logOutService
+} from "@services/auth/auth.service";
 
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
+export const UPDATE_USER = "UPDATE_USER";
 
 // Fetches the authToken and sets the user as logged in or logs hims out
 export const logIn = (
@@ -21,16 +26,9 @@ export const logIn = (
   rememberme: boolean
 ) => async (dispatch: ThunkDispatch<any, any, AppActions>) => {
   try {
-    const authToken = await new Promise<string>((resolve, reject) => {
-      if (genBiasBoolean(1)) {
-        resolve("FAKE_TOKEN");
-      } else {
-        reject(new Error("Server: Password and email did not match"));
-      }
-    });
-
+    const { token: authToken, user } = await logInUser(email, password);
     if (authToken) {
-      dispatch(setLoggedIn(authToken, rememberme));
+      dispatch(setLoggedIn(authToken, user, rememberme));
     } else {
       throw new Error("Failed to signin");
     }
@@ -47,22 +45,16 @@ export const isLoggedIn = () => async (
   try {
     const auth = getState().Auth;
     // Check if auth token is stored in local storage
-    let authToken = handleSessionExpiration();
-    // if authToken in localStorage or redux, check if also signed in in the server
-    if (authToken || auth.loggedIn) {
-      authToken = await new Promise<string>((resolve, reject) => {
-        if (genBiasBoolean(1)) {
-          resolve("FAKE_TOKEN");
-        } else {
-          reject(new Error("Server: Auth token expired"));
-        }
-      });
-    }
-
-    if (authToken) {
-      dispatch(setLoggedIn(authToken));
-    } else {
-      throw new Error("Failed to signin");
+    const localStorageAuthToken = await handleSessionExpiration();
+    const localToken = localStorageAuthToken ?? auth.authToken;
+    // if authToken in AsyncStorage or redux, check if also signed in in the server
+    if (localToken || auth.loggedIn) {
+      const { token: authToken, user } = await fetchAuthToken(localToken);
+      if (authToken) {
+        dispatch(setLoggedIn(authToken, user));
+      } else {
+        throw new Error("Failed to signin");
+      }
     }
   } catch (e) {
     dispatch(logOut());
@@ -70,24 +62,18 @@ export const isLoggedIn = () => async (
 };
 
 // Fetches user data and sets the app as logged in
-export const setLoggedIn = (authToken: string, save = false) => async (
-  dispatch: ThunkDispatch<any, any, AppActions>
-) => {
+export const setLoggedIn = (
+  authToken: string,
+  user: User,
+  save = false
+) => async (dispatch: ThunkDispatch<any, any, AppActions>) => {
   try {
-    // Set the auth token in localStorage
-    refreshLocalStorageAuth(authToken, save);
+    // Set the auth token in AsyncStorage
+    await refreshAsyncStorageAuth(authToken, save);
     // Fetch user from the server
-    const user = await new Promise<User>((resolve, reject) => {
-      if (genBiasBoolean(1)) {
-        resolve(buildUser());
-      } else {
-        console.error("Falló la búsqueda del usuario");
-        reject(new Error("User not found"));
-      }
-    });
-
+    const payload = { authToken, user };
     if (user) {
-      dispatch({ type: LOG_IN, payload: { authToken, user } });
+      dispatch({ type: LOG_IN, payload });
     } else {
       throw new Error("Failed to fetch user data");
     }
@@ -96,11 +82,32 @@ export const setLoggedIn = (authToken: string, save = false) => async (
   }
 };
 
+// Update user data
+export const updateUser = (user: User) => async (
+  dispatch: Dispatch<AppActions>,
+  getState: () => AppState
+) => {
+  try {
+    const serverUser = await updateUserService(user);
+    dispatch({ type: UPDATE_USER, payload: serverUser });
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
 // Logs the user out
-export const logOut = () => (dispatch: Dispatch<AppActions>) => {
-  const authTokenKey = env.AUTH_TOKEN_KEY as string;
-  localStorage.removeItem(authTokenKey);
-  const authTokenExpiracyKey = env.AUTH_EXPIRACY_TOKEN_KEY as string;
-  localStorage.removeItem(authTokenExpiracyKey);
-  dispatch({ type: LOG_OUT, payload: null });
+export const logOut = () => async (
+  dispatch: Dispatch<AppActions>,
+  getState: () => AppState
+) => {
+  try {
+    const authToken = getState().Auth.authToken;
+    if (authToken) {
+      await logOutService(authToken);
+    }
+    await cleanAsyncStorageAuth();
+    dispatch({ type: LOG_OUT, payload: null });
+  } catch (e) {
+    throw new Error(e.message);
+  }
 };
