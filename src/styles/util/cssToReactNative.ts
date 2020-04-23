@@ -13,7 +13,7 @@ const css = (
     .map(block => {
       return (block as string)
         .split(/(?:\r\n|\n|\r)/)
-        .filter(line => !!line)
+        .filter(line => !!line.trim())
         .map(line => {
           const pair = (line as string).replace(";", "").trim().split(":");
           if (!!pair[0] && !pair[1]) {
