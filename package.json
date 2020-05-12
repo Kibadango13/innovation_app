@@ -9,7 +9,7 @@
     "eject": "expo eject",
     "test": "jest  --watchAll",
     "test:all": "npm run test -- --watchAll=false --coverage",
-    "test:ci": "CI=true jest",
+    "test:ci": "cross-env CI=true jest --runInBand",
     "check-types": "tsc",
     "lint": "eslint --ignore-path .gitignore --ignore-pattern !cypress/.eslintrc.js --ext .js,jsx,.ts,.tsx .",
     "lint:watch": "esw -w --clear --color --ignore-path .gitignore --ignore-pattern !cypress/.eslintrc.js --ext .js,jsx,.ts,.tsx .",
