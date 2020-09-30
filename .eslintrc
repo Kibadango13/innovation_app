@@ -14,7 +14,8 @@
     "react-app"
   ],
   "rules": {
-    "import/order": "off"
+    "import/order": "off",
+    "import/no-duplicates": "off"
   },
   "env": {
     "browser": true,

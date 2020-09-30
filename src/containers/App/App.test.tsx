@@ -1,12 +1,11 @@
 import React from "react";
-import { appRender, wait } from "setupTests";
+import { appRender } from "setupTests";
 
 import { App } from "./App";
 
 describe("App", () => {
   it("renders without crashing", async () => {
-    await wait(() => {
-      appRender(<App />);
-    });
+    const { unmount } = appRender(<App />);
+    unmount();
   });
 });

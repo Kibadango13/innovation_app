@@ -17,7 +17,10 @@ const ErrorBoundry: React.FC<Props> = props => {
     <ServerError {...props} navigation={navigation} route={route} />
   );
   return (
-    <ErrorBoundaryLib FallbackComponent={Fallback}>
+    <ErrorBoundaryLib
+      FallbackComponent={Fallback}
+      onError={error => console.log("sdfjsldfjsf", error)}
+    >
       {props.children}
     </ErrorBoundaryLib>
   );

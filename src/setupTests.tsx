@@ -1,13 +1,12 @@
 import "jest-axe/extend-expect";
 import "jest-styled-components";
+import "@testing-library/jest-native/extend-expect";
 
 import React from "react";
 import { Store } from "redux";
 import { Provider } from "react-redux";
-import {
-  render as rtlRender,
-  RenderOptions as rtlRenderOptions
-} from "@testing-library/react-native";
+import { cleanup, render as rtlRender } from "@testing-library/react-native";
+import { RenderOptions as rtlRenderOptions } from "@testing-library/react-native";
 import { ThemeProvider } from "styled-components/native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -18,6 +17,10 @@ import { View } from "react-native";
 import appStore from "redux/store";
 import themes from "styles/theme";
 import CONSTANTS from "@config/constants";
+
+jest.mock("react-native/Libraries/Animated/src/NativeAnimatedHelper");
+
+afterAll(cleanup);
 
 interface RenderOptions extends Omit<rtlRenderOptions, "queries"> {
   // Redux store
@@ -40,10 +43,19 @@ export const render = (ui: React.ReactElement, options: RenderOptions = {}) => {
     const { children } = props;
     const Screen = () => <View>{children}</View>;
     return (
-      <SafeAreaProvider>
+      <SafeAreaProvider
+        initialMetrics={{
+          frame: { x: 0, y: 0, width: 0, height: 0 },
+          insets: { top: 0, left: 0, right: 0, bottom: 0 }
+        }}
+      >
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="Home" component={Screen} />
+            <Stack.Screen
+              name="Home"
+              component={Screen}
+              options={{ animationEnabled: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

@@ -1,10 +1,16 @@
-// import React from "react";
+import React from "react";
+import { View } from "react-native";
 
-// import { render } from "setupTests";
-// import ErrorBoundry from "./ErrorBoundry";
+import { render, waitFor } from "setupTests";
+import ErrorBoundry from "./ErrorBoundry";
 
 describe("ErrorBoundry", () => {
-  it("renders with default props", () => {
-    // render(<ErrorBoundry />);
+  it("renders with default props", async () => {
+    render(
+      <ErrorBoundry>
+        <View />
+      </ErrorBoundry>
+    );
+    await waitFor(() => new Promise(resolve => resolve()));
   });
 });
