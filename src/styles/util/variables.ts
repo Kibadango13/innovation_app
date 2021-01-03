@@ -26,6 +26,9 @@ const sizes = {
     minWidth: `${windowWidth}px`,
     maxWidth: `${windowWidth}px`,
     minHeight: `${windowHeight}px`
+  },
+  mainNavigator: {
+    height: 72
   }
 };
 

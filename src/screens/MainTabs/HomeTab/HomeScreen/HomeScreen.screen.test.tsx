@@ -1,19 +1,22 @@
 import React from "react";
 
 import { render, waitFor } from "setupTests";
-import Home from "./Home.screen";
 import { buildStackNavigation } from "utils/testUtils/builders/navigation.builder";
 import { buildRoute } from "utils/testUtils/builders/navigation.builder";
-import { HomeRoute } from "./Home.screen.types";
 
-describe("Home screen", () => {
+import HomeScreen from "./HomeScreen.screen";
+import { HomeScreenRoute } from "./HomeScreen.screen.types";
+
+describe("HomeScreen screen", () => {
   it("renders without crashing", async () => {
     render(
-      <Home
+      <HomeScreen
         navigation={buildStackNavigation()}
-        route={buildRoute<HomeRoute>({ name: "Home" })}
+        route={buildRoute<HomeScreenRoute>({ name: "Home" })}
       />
     );
-    await waitFor(() => new Promise(resolve => resolve()));
+    await waitFor(
+      () => new Promise<void>(resolve => resolve())
+    );
   });
 });

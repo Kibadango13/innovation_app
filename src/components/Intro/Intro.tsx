@@ -25,6 +25,7 @@ const Intro: React.FC<Props> = props => {
       <Title>{t("title")}</Title>
       <Version>
         {t("version")}
+        drkawllllllk
         {appJson.expo.version}
       </Version>
       <Button mode="SECONDARY" onPress={openLink} viewStyle={CTA}>

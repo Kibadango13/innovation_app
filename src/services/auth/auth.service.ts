@@ -46,7 +46,7 @@ export const updateUserService = async (user: User): Promise<User> => {
 };
 
 export const logOutService = async (authToken: string) => {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     setTimeout(() => {
       if (genBiasBoolean(1)) {
         resolve();

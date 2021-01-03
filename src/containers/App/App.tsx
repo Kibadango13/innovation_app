@@ -7,18 +7,18 @@ import moment from "moment";
 import "moment/locale/es";
 
 import { AppProps as Props } from "./App.types";
-// import { ErrorBoundary } from "utils/bugsnag";
+import { ErrorBoundary } from "utils/bugsnag";
 import CONSTANTS from "config/constants";
 import store from "redux/store";
 import ThemeProviderContainer from "../ThemeProviderContainer/ThemeProviderContainer";
 import Navigator from "navigation/Navigator";
 import { loadFonts } from "@utils/fonts";
 import "i18n/i18n";
-// import env from "../../../env";
+import env from "../../../env";
 
 const App: React.FC<Props> = props => {
-  // const environment = env.ENV;
-  // const includedEnv = CONSTANTS.INCLUDED_LOGGER_ENVS.includes(environment);
+  const environment = env.ENV;
+  const includedEnv = CONSTANTS.INCLUDED_LOGGER_ENVS.includes(environment);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -42,8 +42,7 @@ const App: React.FC<Props> = props => {
     </ReactQueryConfigProvider>
   );
 
-  // return includedEnv ? <ErrorBoundary>{app}</ErrorBoundary> : app;
-  return app;
+  return includedEnv ? <ErrorBoundary>{app}</ErrorBoundary> : app;
 };
 
 export { App };

@@ -23,6 +23,7 @@
     "@bugsnag/expo": "^6.5.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-community/netinfo": "5.9.6",
+    "@react-navigation/bottom-tabs": "^5.11.2",
     "@react-navigation/native": "^5.1.4",
     "@react-navigation/stack": "^5.2.9",
     "axios": "^0.19.2",
@@ -97,5 +98,21 @@
     "test-data-bot": "^0.8.0",
     "typescript": "~3.9.2"
   },
-  "private": true
+  "private": true,
+  "name": "innovation_app",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kibadango13/innovation_app.git"
+  },
+  "keywords": [
+    "innovation_app"
+  ],
+  "author": "Kevin Ibadango",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kibadango13/innovation_app/issues"
+  },
+  "homepage": "https://github.com/Kibadango13/innovation_app#readme"
 }

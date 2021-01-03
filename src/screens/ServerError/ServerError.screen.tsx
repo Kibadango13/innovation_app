@@ -13,7 +13,7 @@ const ServerError: React.FC<Props> = props => {
     if (resetError) {
       resetError();
     } else {
-      navigation.navigate("Home", {});
+      navigation.navigate("ServerError", {});
     }
   };
 
